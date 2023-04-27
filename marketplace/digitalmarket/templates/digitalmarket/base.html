@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +12,22 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-       <h1>Hello from the base template</h1>
+       <nav class='shadow-lg'>
+           <div class='flex flex-wrap justify-between ml-5 items-center mx-auto px-4 py-2.5'>
+               <a href='' class='flex items-center'>
+                   <img src='{% static "images/market.png" %}' class='h-5 w-5 m-2'>
+                   <span class='self-center text-xl font-semibold'>Digital Marketplace</span>
+               </a>
+               <div class='flex items-center'>
+                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Dashbord</a>
+                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Sales</a>
+                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Orders</a>
+                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Create Products</a>
+                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>My Purchases</a>
+                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Logout</a>
+               </div>
+           </div>
+       </nav>
        
        {% block content %}
        {% endblock %}

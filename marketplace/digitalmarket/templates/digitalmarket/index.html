@@ -4,5 +4,12 @@
        <h1>Index page</h1>
        <button class='bg-yellow-100 text-bold px-4 py-2 m-2'>Save</button>
 
+       {% for product in object_list %}
+              {{product.name}}
+              {{product.price}}
+              {{product.description}}
+              <br/>
+       {% endfor %}
+
 {% endblock %}
           

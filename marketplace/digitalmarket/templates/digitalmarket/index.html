@@ -1,15 +1,29 @@
 {% extends 'digitalmarket/base.html' %}
+{% load static %}
 
 {% block content %}
-       <h1>Index page</h1>
-       <button class='bg-yellow-100 text-bold px-4 py-2 m-2'>Save</button>
-
-       {% for product in object_list %}
-              {{product.name}}
-              {{product.price}}
-              {{product.description}}
-              <br/>
+      
+       <div class='product-container flex'>
+              {% for product in object_list %}
+              <div class='product shadow-lg w-1/4 rounded-lg m-10'>
+                     <div class='product-image'>
+                            <img src='{{ product.file.url }}'>
+                     </div>
+                     <div class='p-5'>
+                            <div class='font-bold'>{{product.name}}</div>
+                            <div class=''>{{product.description}}</div>
+                            <div class='text-green-500 font-bold'>${{product.price}}</div>
+                            <div class='mt-4'>
+                                   <a href='' class='bg-green-500 text-white px-4 py-2'>Details</a>
+                            </div>
+                     </div>
+              </div>
        {% endfor %}
+       </div>
+       
 
 {% endblock %}
+
+             
+             
           

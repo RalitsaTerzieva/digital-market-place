@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 from .models import Product, OrderDetail
 
@@ -60,3 +60,18 @@ def create_checkout_session(request,id):
     order.save()
 
     return JsonResponse({'sessionId':checkout_session.id})
+
+
+def payment_success_view(request):
+    session_id = request.GET.get('session_id')
+    if session_id is None:
+        return HttpResponseNotFound()
+    
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    session = stripe.checkout.Session.retrieve(session_id)
+    order = get_object_or_404(OrderDetail,stripe_payment_intent=session.payment_intent)
+    order.has_paid = True
+    order.save()
+    
+    return render(request, 'digitalmarket/payment_success.html',{'order':order})
+        

@@ -2,6 +2,19 @@
 
 {% block content %}
 <h1>Detail</h1>
-{{ object.name }}
-{{ product.price }}
+<div class='flex p-10'>
+    <div>
+        <img src='{{ product.file.url }}' class=''>
+    </div>
+    <div class='pl-10'>
+        <div class='font-bold text-4xl mb-4'>{{ object.name }}</div>
+        <div class='mb-4'>{{ product.description }}</div>
+        <div class='mb-4 text-green-500 text-bold'>${{ product.price }}</div>
+        <div>
+            <button id='checkout-button' class='bg-green-500 text-white px-4 py-2 rounded-sm'>ADD TO CART</button>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

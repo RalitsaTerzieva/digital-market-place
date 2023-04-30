@@ -14,7 +14,7 @@
                             <div class=''>{{product.description}}</div>
                             <div class='text-green-500 font-bold'>${{product.price}}</div>
                             <div class='mt-4'>
-                                   <a href='' class='bg-green-500 text-white px-4 py-2'>Details</a>
+                                   <a href='{% url "detail" product.id %}' class='bg-green-500 text-white px-4 py-2'>Details</a>
                             </div>
                      </div>
               </div>

@@ -4,8 +4,9 @@ from django.urls import reverse
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.conf import settings
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Product
+from .models import Product, OrderDetail
 
 import stripe
 import json
@@ -50,6 +51,12 @@ def create_checkout_session(request,id):
         "?session_id={CHECKOUT_SESSION_ID}",
         cancel_url = request.build_absolute_uri(reverse('failed')),
     )
+    
+    order = OrderDetail()
+    order.customer_email = request_data['email']
+    order.product = product
+    order.stripe_payment_intent = checkout_session['payment_intent']
+    order.amount = int(product.price)
+    order.save()
 
-
-
+    return JsonResponse({'sessionId':checkout_session.id})

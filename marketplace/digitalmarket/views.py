@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse,reverse_lazy
 
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.conf import settings
@@ -44,7 +45,11 @@ class ProductDeleteView(DeleteView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("index")
+    
 
+class DashboatdListView(ListView):
+    model = Product
+    template_name = 'digitalmarket/dashboard.html'
 
 @csrf_exempt
 def create_checkout_session(request,id):

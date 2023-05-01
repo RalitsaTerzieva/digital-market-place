@@ -1,0 +1,43 @@
+{% extends "digitalmarket/base.html" %}
+
+{% block content %}
+<div class='flex justify-between'>
+    <div class='font-semibold ml-20 mt-10'>My Products</div>
+    <div class='ml-20 mt-10'>
+        <a href='{% url "create" %}' class='bg-green-500 text-white px-4 py-2 mr-8'>New Product</a>
+    </div>
+</div>
+<div class='product-container p-10 m-5'>
+    {% for item in object_list %}
+    <div class='flex m-5 p-2 justify-between shadow-lg'>
+        <div class='flex w-1/4'>
+            <img class='h-20' src='{{ item.file.url }}'>
+        <div>
+            <div>Edit Product</div>
+            <div>
+                <div>{{item.name}}</div>
+                <div>{{item.description}}</div>
+                <div>${{item.price}}</div>
+            </div>
+        </div>
+        </div>
+        
+        <div>
+            <div class='text-2xl'>200$</div>
+            <div class='text-sm'>Total earnings</div>
+        </div>
+        <div>
+            <div class='text-2xl'>20</div>
+            <div class='text-sm'>Total orders</div>
+        </div>
+        <div>
+            <div class='text-2xl'>4.9</div>
+            <div class='text-sm'>Raitings</div>
+        </div>
+    </div>
+    
+  
+    {% endfor %}
+
+</div>
+{% endblock %}

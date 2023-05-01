@@ -1,5 +1,8 @@
 {% extends 'digitalmarket/base.html'  %}
 
 {% block content %}
-<h1>Success</h1>
+<div class='grid place-items-center h-screen'>
+    <div class='m-4 p-5 font-semibold text-6xl'>Payment Successful!</div>
+    <a class='bg-green-500 text-white px-5 py-2 p-5' href='{{ order.product.file.url }}' download>Click here to download</a>
+</div>
 {% endblock %}

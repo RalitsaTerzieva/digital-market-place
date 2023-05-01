@@ -1,5 +1,8 @@
-{% extends "digitalmarket/base.html" %}
+{% extends 'digitalmarket/base.html'  %}
 
 {% block content %}
-<h1>Failed!</h1>
+<div class='grid place-items-center h-screen'>
+    <div class='m-4 p-5 font-semibold text-6xl'>Payment Failed!</div>
+    <a class='bg-green-500 text-white px-5 py-2 p-5' href='{% url "index" %}'>Go back to the Home</a>
+</div>
 {% endblock %}

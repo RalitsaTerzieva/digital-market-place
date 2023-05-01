@@ -1,0 +1,14 @@
+{% extends 'digitalmarket/base.html' %}
+
+{% block content %}
+<div class='grid place-items-center h-screen'>
+    
+    <h1 class='font-semibold text-2lg'>Are you sure you want to delete {{ object }} item?</h1>
+    <form method='POST' action='{% url "delete" object.id %}'>
+        {% csrf_token %}
+        <button class='bg-red-500 text-white px-4 py-2' href=''>Delete</button>
+        <a class='bg-yellow-500 text-white px-4 py-2' href='{% url "index" %}'>Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

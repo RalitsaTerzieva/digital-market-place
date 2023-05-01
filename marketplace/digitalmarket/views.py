@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 
-from django.views.generic.edit import CreateView,UpdateView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.conf import settings
@@ -39,6 +39,11 @@ class ProductUpdateView(UpdateView):
     model = Product
     template_name_suffix = "_update_form"
     success_url = "/"
+    
+class ProductDeleteView(DeleteView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("index")
 
 
 @csrf_exempt

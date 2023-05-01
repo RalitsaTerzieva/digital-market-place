@@ -75,3 +75,6 @@ def payment_success_view(request):
     
     return render(request, 'digitalmarket/payment_success.html',{'order':order})
         
+        
+def payment_failed_view(request):
+    return render(request, 'digitalmarket/payment_failed.html')

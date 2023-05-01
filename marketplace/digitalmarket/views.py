@@ -32,10 +32,8 @@ class ProductDetailView(DetailView):
 class ProductFormView(CreateView):
     template_name = "digitalmarket/create_product.html"
     form_class = ProductForm
-    success_url = "/create/"
+    success_url = "/"
 
-    # def form_valid(self, form):
-    #     return super().form_valid(form)
 
 @csrf_exempt
 def create_checkout_session(request,id):

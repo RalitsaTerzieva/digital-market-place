@@ -1,0 +1,15 @@
+{% extends "digitalmarket/base.html" %}
+
+{% block content %}
+<form method='POST' class='m-4' enctype='multipart/form-data'>
+    {% csrf_token %}
+    <div class='border-solid border-2 border-blue-100 m-2'>
+        {{ form.name }}
+    </div>
+    <div class='border-solid border-2 border-blue-100 m-2'>{{ form.description }}</div>
+    <div class='border-solid border-2 border-blue-100 m-2'>{{ form.price }}</div>
+    <div class='border-solid border-2 border-blue-100 m-2'>{{ form.file }}</div>
+    <button type='submit' class='bg-green-500 text-white px-4 py-2 m-4'>Create</button>
+</form>
+
+{% endblock %}

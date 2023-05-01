@@ -1,12 +1,14 @@
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
+from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.conf import settings
 from django.http import JsonResponse, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 from .models import Product, OrderDetail
+from .forms import ProductForm
 
 import stripe
 stripe.api_version = "2020-08-27"
@@ -26,6 +28,14 @@ class ProductDetailView(DetailView):
         context["secret_publish_key"] = settings.STRIPE_PUBLISHABLE_KEY
         return context
         
+        
+class ProductFormView(CreateView):
+    template_name = "digitalmarket/create_product.html"
+    form_class = ProductForm
+    success_url = "/create/"
+
+    # def form_valid(self, form):
+    #     return super().form_valid(form)
 
 @csrf_exempt
 def create_checkout_session(request,id):

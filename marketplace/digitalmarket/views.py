@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Product, OrderDetail
 
 import stripe
+stripe.api_version = "2020-08-27"
 import json
 
 
@@ -28,7 +29,7 @@ class ProductDetailView(DetailView):
 
 @csrf_exempt
 def create_checkout_session(request,id):
-    request_data = json.load(request.body)
+    request_data = json.loads(request.body)
     product = Product.objects.get(id=id)
     stripe.api_key = settings.STRIPE_SECRET_KEY
     checkout_session = stripe.checkout.Session.create(
@@ -64,6 +65,7 @@ def create_checkout_session(request,id):
 
 def payment_success_view(request):
     session_id = request.GET.get('session_id')
+    
     if session_id is None:
         return HttpResponseNotFound()
     

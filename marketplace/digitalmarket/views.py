@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.conf import settings
@@ -32,6 +32,12 @@ class ProductDetailView(DetailView):
 class ProductFormView(CreateView):
     template_name = "digitalmarket/create_product.html"
     form_class = ProductForm
+    
+    
+class ProductUpdateView(UpdateView):
+    form_class = ProductForm
+    model = Product
+    template_name_suffix = "_update_form"
     success_url = "/"
 
 

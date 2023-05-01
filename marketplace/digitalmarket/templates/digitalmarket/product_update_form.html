@@ -1,0 +1,33 @@
+{% extends "digitalmarket/base.html" %}
+
+{% block content %}
+<div class='w-1/2 mx-60 my-40'>
+    <div class='m-10'><h1 class='font-semibold text-lg'>Update Product</h1></div>
+    
+    <form method='POST' class='m-8 p-5 shadow-lg' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class='m-2'>
+            <label>Product Name</label>
+            <div class='border rounded appearance-none p-2 mr-10'>{{ form.name }}</div>
+        </div>
+        <div class='m-2'>
+            <label>Product Description</label>
+            <div class='border rounded appearance-none p-2 mr-10'>{{ form.description }}</div>
+        </div>
+        <div class='m-2'>
+            <label>Price</label>
+            <div class='border rounded appearance-none p-2 mr-10'>{{ form.price }}</div>
+        </div>
+        <div class='m-2'>
+            <label>Upload File</label>
+            <div class='border rounded appearance-none p-2 mr-10'>{{ form.file }}</div>
+        </div>
+        <div class='mt-4'>
+            <button type='submit' class='bg-green-500 text-white px-4 py-2'>Update</button>
+        </div>
+        
+    </form>
+</div>
+
+
+{% endblock %}

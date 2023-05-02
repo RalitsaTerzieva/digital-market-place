@@ -9,7 +9,7 @@ from django.conf import settings
 from django.http import JsonResponse, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 from .models import Product, OrderDetail
-from .forms import ProductForm
+from .forms import ProductForm,UserRegistrationForm
 
 import stripe
 stripe.api_version = "2020-08-27"
@@ -50,6 +50,11 @@ class ProductDeleteView(DeleteView):
 class DashboatdListView(ListView):
     model = Product
     template_name = 'digitalmarket/dashboard.html'
+    
+class SignupView(CreateView):
+    form_class = UserRegistrationForm
+    template_name = 'digitalmarket/register.html'
+    success_url = 'index'
 
 @csrf_exempt
 def create_checkout_session(request,id):

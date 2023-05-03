@@ -54,7 +54,7 @@ class DashboatdListView(ListView):
 class SignupView(CreateView):
     form_class = UserRegistrationForm
     template_name = 'digitalmarket/register.html'
-    success_url = 'index'
+    success_url = reverse_lazy("index")
 
 @csrf_exempt
 def create_checkout_session(request,id):

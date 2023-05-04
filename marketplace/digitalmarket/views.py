@@ -33,7 +33,7 @@ class ProductDetailView(DetailView):
 class ProductFormView(CreateView):
     template_name = "digitalmarket/create_product.html"
     form_class = ProductForm
-    
+    success_url = "/"
     
 class ProductUpdateView(UpdateView):
     form_class = ProductForm

@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.conf import settings
 from django.http import JsonResponse, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
@@ -35,11 +36,15 @@ class ProductFormView(CreateView):
     form_class = ProductForm
     success_url = "/"
     
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UserPassesTestMixin, UpdateView):
     form_class = ProductForm
     model = Product
     template_name_suffix = "_update_form"
     success_url = "/"
+    
+    def test_func(self):
+        product = Product()
+        return product.seller == self.request.user
     
 class ProductDeleteView(DeleteView):
     model = Product

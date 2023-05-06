@@ -19,10 +19,10 @@
                    <span class='self-center text-xl font-semibold'>Digital Marketplace</span>
                </a>
                <div class='flex items-center'>
-                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Dashbord</a>
-                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Sales</a>
+                    <a href='{% url "dashboard" %}' class='mr-6 text-sm font-medium text-gray-500'>Dashbord</a>
+                    <a href='{% url "sales" %}' class='mr-6 text-sm font-medium text-gray-500'>Sales</a>
                     <a href='' class='mr-6 text-sm font-medium text-gray-500'>Orders</a>
-                    <a href='' class='mr-6 text-sm font-medium text-gray-500'>Create Products</a>
+                    <a href='{% url "create" %}' class='mr-6 text-sm font-medium text-gray-500'>Create Products</a>
                     <a href='{% url "purchases" %}' class='mr-6 text-sm font-medium text-gray-500'>My Purchases</a>
                     <a href='{% url "logout" %}' class='mr-6 text-sm font-medium text-gray-500'>Logout</a>
                </div>

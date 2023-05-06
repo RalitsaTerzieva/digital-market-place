@@ -1,0 +1,75 @@
+{% extends "digitalmarket/base.html" %}
+
+{% block content %}
+<div class='flex justify-between'>
+    <div class='ml-10 mt-10 font-bold text-xl'>Sales Stats</div>
+    <div class='mt-10 mr-20'>
+        <a class='bg-green-500 text-white px-2 py-4' href='{% url "dashboard" %}'>Dashboard</a>
+    </div>
+</div>
+<div class='shadow-lg p-10 m-5'>
+    <div class='text-5xl fond-bold'>$ {{ total_sales.amount__sum }}</div>
+    <div class='mt-10'>Your Lifetime Revenue</div>
+</div>
+<div class='flex'>
+    <div class='p-5 w-1/3'>
+        <div class='shadow-lg p-10'>
+            <div class='text-4xl font-bold'>$ {{yearly_sales.amount__sum}}</div>
+            <div>Last 365 Days</div>
+        </div>
+    </div>
+    <div class='p-5 w-1/3'>
+        <div class='shadow-lg p-10'>
+            <div class='text-4xl font-bold'>$ {{monthly_sales.amount__sum}}</div>
+            <div>Last 30 Days</div>
+        </div>
+    </div>
+    <div class='p-5 w-1/3'>
+        <div class='shadow-lg p-10'>
+            <div class='text-4xl font-bold'>$ {{weekly_sales.amount__sum}}</div>
+            <div>Last 7 Days</div>
+        </div>
+    </div>
+    
+</div>
+<div class='flex'>
+    <div class='w-1/2 shadow-lg m-10'>
+        <div class='ml-10 mt-10 font-bold text-lg'>30 days sales</div>
+        <div class='flex m-10 mt-5 mb-5'>
+            <div class='w-1/2'>
+                Day
+            </div>
+            <div class='w-1/2'>
+                Total Sales
+            </div>
+        </div>
+        {% for daily_sales_sum in daily_sales_sums %}
+        <div class='flex m-10 mt-5 mb-5'>
+            <div class='w-1/2'>{{ daily_sales_sum.created_on }}</div>
+            <div class='w-1/2 font-bold text-green-500'>$ {{ daily_sales_sum.sum }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class='flex'>
+    <div class='w-1/2'></div>
+    <div class='w-1/2 shadow-lg m-10'>
+        <div class='ml-10 mt-10 font-bold text-lg'>Product sales</div>
+        <div class='flex m-10 mt-5 mb-5'>
+            <div class='w-1/2'>
+                Product Name
+            </div>
+            <div class='w-1/2'>
+                Total Sales
+            </div>
+        </div>
+        {% for product_sales_sum in product_sales_sums %}
+        <div class='flex m-10 mt-5 mb-5'>
+            <div class='w-1/2'>{{ product_sales_sum.product__name }}</div>
+            <div class='w-1/2 font-bold text-green-500'>$ {{ product_sales_sum.sum }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

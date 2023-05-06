@@ -1,0 +1,28 @@
+{% extends "digitalmarket/base.html" %}
+
+{% block content %}
+<div class='flex justify-between'>
+    <div class='font-semibold ml-20 mt-10'>My Purchases</div>
+    <div class='ml-20 mt-10'>
+        <a href='{% url "create" %}' class='bg-green-500 text-white px-4 py-2 mr-8'>New Product</a>
+    </div>
+</div>
+<div class='order-container p-10 m-5 shadow-lg'>
+    <div class='order-header flex m-5 p-2 font-bold'>
+        <div class='w-1/4'>Product Name</div>
+        <div class='w-1/4'>Amount Paid</div>
+        <div class='w-1/4'>Order Date</div>
+        <div class='w-1/4'>Download Link</div>
+    </div>
+    {% for order in object_list %}
+    <div class='flex m-5 p-2'>
+        <div class='w-1/4'>{{order.product.name}}</div>
+        <div class='w-1/4 text-green-500'>${{order.amount}}</div>
+        <div class='w-1/4'>{{order.created_on}}</div>
+        <div class='w-1/4'>
+            <a href='{{order.product.file.url}}' class='bg-green-500 text-white px-4 py-2' download>Click to download</a>
+        </div>
+    </div>
+    {% endfor %}
+    
+{% endblock %}

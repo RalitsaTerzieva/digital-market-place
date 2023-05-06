@@ -12,8 +12,9 @@ urlpatterns = [
     path("create/",ProductFormView.as_view(), name='create'),
     path("update/<int:pk>/", ProductUpdateView.as_view(), name='update'),
     path("delete/<int:pk>/", ProductDeleteView.as_view(), name='delete'),
-    path("dashboard/", DashboatdListView.as_view(), name='dashboard'),
+    path("dashboard/", DashboardListView.as_view(), name='dashboard'),
     path("register/",SignupView.as_view(),name='register'),
     path("login/",views.LoginView.as_view(template_name='digitalmarket/login.html'),name='login'),
-    path("logout/",views.LogoutView.as_view(template_name='digitalmarket/logout.html'),name='logout'),    
+    path("logout/",views.LogoutView.as_view(template_name='digitalmarket/logout.html'),name='logout'), 
+    path("purchases/",PurchasesListView.as_view(),name="purchases"),   
 ]

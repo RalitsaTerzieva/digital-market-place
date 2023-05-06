@@ -56,7 +56,19 @@ class ProductDeleteView(UserPassesTestMixin,DeleteView):
         return object.seller == self.request.user
     
 
-class DashboatdListView(ListView):
+class PurchasesListView(ListView):
+    model = OrderDetail
+    template_name = 'digitalmarket/purchases.html'
+    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        current_user = self.request.user
+        if not current_user.is_staff and not current_user.is_superuser:
+            qs = qs.filter(customer_email=self.request.user.email)
+            
+        return qs
+
+class DashboardListView(ListView):
     model = Product
     template_name = 'digitalmarket/dashboard.html'
     

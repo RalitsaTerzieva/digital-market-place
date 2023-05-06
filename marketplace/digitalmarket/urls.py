@@ -15,6 +15,5 @@ urlpatterns = [
     path("dashboard/", DashboatdListView.as_view(), name='dashboard'),
     path("register/",SignupView.as_view(),name='register'),
     path("login/",views.LoginView.as_view(template_name='digitalmarket/login.html'),name='login'),
-    path("logout/",views.LogoutView.as_view(template_name='digitalmarket/logout.html'),name='logout'),
-    
+    path("logout/",views.LogoutView.as_view(template_name='digitalmarket/logout.html'),name='logout'),    
 ]

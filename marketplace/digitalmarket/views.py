@@ -43,8 +43,8 @@ class ProductUpdateView(UserPassesTestMixin, UpdateView):
     success_url = "/"
     
     def test_func(self):
-        product = Product()
-        return product.seller == self.request.user
+        object = self.get_object()
+        return object.seller == self.request.user
     
 class ProductDeleteView(DeleteView):
     model = Product
@@ -55,6 +55,14 @@ class ProductDeleteView(DeleteView):
 class DashboatdListView(ListView):
     model = Product
     template_name = 'digitalmarket/dashboard.html'
+    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        current_user = self.request.user
+        if not current_user.is_staff and not current_user.is_superuser:
+            qs = qs.filter(seller=self.request.user)
+            
+        return qs
     
 class SignupView(CreateView):
     form_class = UserRegistrationForm

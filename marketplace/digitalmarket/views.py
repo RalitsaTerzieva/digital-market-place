@@ -40,16 +40,20 @@ class ProductUpdateView(UserPassesTestMixin, UpdateView):
     form_class = ProductForm
     model = Product
     template_name_suffix = "_update_form"
-    success_url = "/"
+    success_url = reverse_lazy("index")
     
     def test_func(self):
         object = self.get_object()
         return object.seller == self.request.user
     
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(UserPassesTestMixin,DeleteView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("index")
+    
+    def test_func(self):
+        object = self.get_object()
+        return object.seller == self.request.user
     
 
 class DashboatdListView(ListView):

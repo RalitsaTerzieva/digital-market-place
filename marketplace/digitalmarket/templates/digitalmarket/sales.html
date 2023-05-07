@@ -33,7 +33,7 @@
     
 </div>
 <div class='flex'>
-    <div class='w-1/2 shadow-lg m-10'>
+    <div class='w-1/2 shadow-lg m-10' id='sales-table'>
         <div class='ml-10 mt-10 font-bold text-lg'>30 days sales</div>
         <div class='flex m-10 mt-5 mb-5'>
             <div class='w-1/2'>
@@ -45,10 +45,15 @@
         </div>
         {% for daily_sales_sum in daily_sales_sums %}
         <div class='flex m-10 mt-5 mb-5'>
-            <div class='w-1/2'>{{ daily_sales_sum.created_on }}</div>
-            <div class='w-1/2 font-bold text-green-500'>$ {{ daily_sales_sum.sum }}</div>
+            <div class='w-1/2 create-date'>{{ daily_sales_sum.created_on }}</div>
+            <div class='w-1/2 daily-sum font-bold text-green-500'>{{ daily_sales_sum.sum }}</div>
         </div>
         {% endfor %}
+    </div>
+    <div class='w-1/2'>
+        <div>
+            <canvas id="myChart"></canvas>
+          </div>
     </div>
 </div>
 <div class='flex'>
@@ -71,5 +76,50 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+
+    const sums = document.getElementsByClassName('daily-sum')
+    const dates = document.getElementsByClassName('create-date')
+
+    const sum_values = []
+
+    for(let i = 0; i < sums.length; i++){
+        single_sum = sums[i].innerText
+        console.log(single_sum)
+        sum_values.push(Number(single_sum))
+    }
+
+    const date_values = []
+
+    for(let i = 0; i < dates.length; i++){
+        single_date = dates[i].innerText
+        console.log(single_date)
+        date_values.push(single_date)
+    }
+    
+
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: date_values,
+        datasets: [{
+          label: 'Sales for the past 30 days',
+          data: sum_values,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+   
 
 {% endblock %}

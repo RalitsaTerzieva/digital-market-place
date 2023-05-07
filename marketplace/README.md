@@ -2,7 +2,12 @@
 
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Udemy](https://img.shields.io/badge/Udemy-A435F0?style=for-the-badge&logo=Udemy&logoColor=white)![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-This is a simple beginner Django based digital market place project which everyone can use if they want to learn how to use Django, TailwindCSS and Chartjs. 
+This is a simple beginner Django based digital market place project which everyone can use if they want to learn how to use Django, TailwindCSS,Chartjs and Stripe. 
+
+You can:
+- create a new product;
+- delete product;
+- update product;
 
 
 

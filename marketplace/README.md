@@ -6,9 +6,13 @@ This is a simple beginner Django based digital market place project which everyo
 
 You can:
 - create a new product;
-- delete product;
-- update product;
+- delete a product;
+- update a product;
 
+You have also functionalities like:
+- register;
+- login;
+- logout;
 
 
 ## Installation
